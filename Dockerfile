@@ -1,4 +1,4 @@
-FROM aquasec/trivy:latest
+FROM aquasec/trivy:0.71.0
 
 # Install Python and pip
 RUN apk add --no-cache python3 py3-pip python3-dev build-base
