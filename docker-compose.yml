@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  trivy-api:
+    # Option 1: Build from source
+    build: .
+
+    # Option 2: Use pre-built image from GitHub Container Registry
+    # Uncomment the line below and comment out the 'build' line above
+    # image: ghcr.io/icaliskanoglu/trivy-api:latest
+
+    container_name: trivy-api
+    ports:
+      - "8000:8000"
+    environment:
+      - TRIVY_CACHE_DIR=/root/.cache/trivy
+    volumes:
+      # Mount Docker socket to allow scanning of local images
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Cache trivy database for faster subsequent scans
+      - trivy-cache:/root/.cache/trivy
+    restart: unless-stopped
+
+volumes:
+  trivy-cache:
