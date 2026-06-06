@@ -1,4 +1,8 @@
-FROM aquasec/trivy:0.71.0
+# Trivy Scanner API Dockerfile
+# IMPORTANT: Keep TRIVY_VERSION pinned to ensure consistency across releases
+ARG TRIVY_VERSION=0.71.0
+
+FROM aquasec/trivy:${TRIVY_VERSION}
 
 # Install Python and pip
 RUN apk add --no-cache python3 py3-pip python3-dev build-base

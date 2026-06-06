@@ -212,6 +212,29 @@ print(f"Results: {result['scan_result']}")
 - `/var/run/docker.sock`: Required for scanning local Docker images
 - Trivy cache volume: Improves performance by caching vulnerability database
 
+### Dependency Versions
+
+**Trivy Scanner Version**
+
+This project uses a **pinned version** of Trivy to ensure consistency across all releases:
+- **Current Trivy Version:** `0.71.0` (June 2026)
+- **Location:** Defined in `Dockerfile` as `TRIVY_VERSION` argument
+
+**Why Version Pinning?**
+- Ensures reproducible builds across all environments
+- Prevents unexpected behavior from automatic Trivy updates
+- Guarantees consistent scan results for the same image
+- Allows controlled upgrades with proper testing
+
+**Updating Trivy Version:**
+When updating the Trivy version, modify the `TRIVY_VERSION` argument in the Dockerfile:
+```dockerfile
+ARG TRIVY_VERSION=0.71.0  # Update this version
+```
+
+**Python Dependencies**
+All Python packages are pinned to specific versions in `requirements.txt` and `requirements-dev.txt` for the same reasons.
+
 ## Project Structure
 
 ```
